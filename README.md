@@ -19,7 +19,7 @@ git clone https://github.com/cms-data/EgammaAnalysis-ElectronTools.git EgammaAna
 scram b -j 8 
 git cms-merge-topic cms-met:METFixEE2017_949_v2_backport_to_102X 
 git clone https://github.com/cmkuo/HiggsAnalysis.git 
-git clone -b 102X https://github.com/ftorresd/ggAnalysis.git 
+git clone -b 102X_slimmed https://github.com/ftorresd/ggAnalysis.git 
 scram b -j 8
 ```
 
