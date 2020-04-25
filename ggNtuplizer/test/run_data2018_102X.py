@@ -15,13 +15,13 @@ process.GlobalTag = GlobalTag(process.GlobalTag, '102X_dataRun2_v11', '') #2018A
 
 #process.Tracer = cms.Service("Tracer")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
-process.MessageLogger.cerr.FwkReport.reportEvery = 1000
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring(
-        'file:/data4/cmkuo/testfiles/DoubleMuon_Run2018C_17Sep2018.root'
-        #'file:/data4/cmkuo/testfiles/DoubleMuon_Run2018D_PR.root'
+        'file:Data_2018.root'
+            #'file:/data4/cmkuo/testfiles/DoubleMuon_Run2018D_PR.root'
         )
                             )
 
@@ -50,38 +50,38 @@ runOnData( process,  names=['Photons', 'Electrons','Muons','Taus','Jets'], outpu
 #runOnData( process, outputModules = [] )
 #removeMCMatching(process, names=['All'], outputModules=[])
 
-process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data.root'))
+process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018_v02.root'))
 
 ### update JEC
-process.load("PhysicsTools.PatAlgos.producersLayer1.jetUpdater_cff")
-process.jetCorrFactors = process.updatedPatJetCorrFactors.clone(
-    src = cms.InputTag("slimmedJets"),
-    levels = ['L1FastJet', 'L2Relative', 'L3Absolute', 'L2L3Residual'],
-    payload = 'AK4PFchs') 
+# process.load("PhysicsTools.PatAlgos.producersLayer1.jetUpdater_cff")
+# process.jetCorrFactors = process.updatedPatJetCorrFactors.clone(
+#     src = cms.InputTag("slimmedJets"),
+#     levels = ['L1FastJet', 'L2Relative', 'L3Absolute', 'L2L3Residual'],
+#     payload = 'AK4PFchs') 
 
-process.slimmedJetsJEC = process.updatedPatJets.clone(
-    jetSource = cms.InputTag("slimmedJets"),
-    jetCorrFactorsSource = cms.VInputTag(cms.InputTag("jetCorrFactors"))
-    )
+# process.slimmedJetsJEC = process.updatedPatJets.clone(
+#     jetSource = cms.InputTag("slimmedJets"),
+#     jetCorrFactorsSource = cms.VInputTag(cms.InputTag("jetCorrFactors"))
+#     )
 
 ### reduce effect of high eta EE noise on the PF MET measurement
-from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
-runMetCorAndUncFromMiniAOD (
-        process,
-        isData = True, # false for MC
-        fixEE2017 = True,
-        fixEE2017Params = {'userawPt': True, 'ptThreshold':50.0, 'minEtaThreshold':2.65, 'maxEtaThreshold': 3.139} ,
-        postfix = "ModifiedMET"
-)
+# from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
+# runMetCorAndUncFromMiniAOD (
+#         process,
+#         isData = True, # false for MC
+#         fixEE2017 = True,
+#         fixEE2017Params = {'userawPt': True, 'ptThreshold':50.0, 'minEtaThreshold':2.65, 'maxEtaThreshold': 3.139} ,
+#         postfix = "ModifiedMET"
+# )
 
 process.load("ggAnalysis.ggNtuplizer.ggNtuplizer_miniAOD_cfi")
 process.ggNtuplizer.year=cms.int32(2017)
 process.ggNtuplizer.doGenParticles=cms.bool(False)
-process.ggNtuplizer.dumpPFPhotons=cms.bool(True)
+process.ggNtuplizer.dumpPFPhotons=cms.bool(False)
 process.ggNtuplizer.dumpHFElectrons=cms.bool(False)
-process.ggNtuplizer.dumpJets=cms.bool(True)
+process.ggNtuplizer.dumpJets=cms.bool(False)
 process.ggNtuplizer.dumpAK8Jets=cms.bool(False)
-process.ggNtuplizer.dumpSoftDrop= cms.bool(True)
+process.ggNtuplizer.dumpSoftDrop= cms.bool(False)
 process.ggNtuplizer.dumpTaus=cms.bool(False)
 process.ggNtuplizer.ak4JetSrc=cms.InputTag("slimmedJetsJEC")
 process.ggNtuplizer.pfMETLabel=cms.InputTag("slimmedMETsModifiedMET")
@@ -95,12 +95,12 @@ process.cleanedMu = cms.EDProducer("PATMuonCleanerBySegments",
                                    fractionOfSharedSegments = cms.double(0.499))
 
 process.p = cms.Path(
-    process.fullPatMetSequenceModifiedMET *
+    # process.fullPatMetSequenceModifiedMET *
     process.egammaPostRecoSeq *
     process.cleanedMu *
-    process.ggMETFiltersSequence *
-    process.jetCorrFactors *
-    process.slimmedJetsJEC *
+    # process.ggMETFiltersSequence *
+    # process.jetCorrFactors *
+    # process.slimmedJetsJEC *
     process.ggNtuplizer
     )
 

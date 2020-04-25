@@ -90,8 +90,8 @@ ggNtuplizer::ggNtuplizer(const edm::ParameterSet& ps) :
     branchesGenPart(tree_);
   }
   
-  branchesMET(tree_);
-  branchesPhotons(tree_);
+  // branchesMET(tree_);
+  // branchesPhotons(tree_);
   branchesElectrons(tree_);
   branchesMuons(tree_);
   if (dumpPFPhotons_)   branchesPFPhotons(tree_);
@@ -146,8 +146,8 @@ void ggNtuplizer::analyze(const edm::Event& e, const edm::EventSetup& es) {
       fillGenPart(e);
   }
 
-  fillMET(e, es);
-  fillElectrons(e, es, pv);
+  // fillMET(e, es);
+  // fillElectrons(e, es, pv);
   fillMuons(e, pv, vtx);
   fillPhotons(e, es); 
   if (dumpPFPhotons_)    fillPFPhotons(e, es);

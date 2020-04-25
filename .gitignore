@@ -1,0 +1,6 @@
+*.pyc
+._*
+ggNtuplizer/python/__init__.py
+*.root
+*.log
+*.tmp
