@@ -153,7 +153,7 @@ void ggNtuplizer::initTriggerFilters(const edm::Event &e) {
 
     muFilters["hltMu17Photon30IsoCaloIdMuonlegL3Filtered17Q"] = 0; //HLT_Mu17_Photon30_IsoCaloId_v* muon
     muFilters["hltL3crIsoL1sMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p09"] = 1; //HLT_IsoMu24_v1
-    // muFilters["hltL3fL1sL1Mu5IsoEG18L1f5L2f7L3Filtered17"] = 2; //HLT_Mu17_Photon*  muon
+    muFilters["hltL3fL1sL1Mu5IsoEG18L1f5L2f7L3Filtered17"] = 2; //HLT_Mu17_Photon*  muon
     // muFilters["hltDiMu9Ele9CaloIdLTrackIdLMuonlegL3Filtered9"] = 3; //HLT_DiMu9_Ele9_CaloIdL_TrackIdL_v3 muon
     // muFilters["hltMu23TrkIsoVVLEle12CaloIdLTrackIdLIsoVLMuonlegL3IsoFiltered23"] = 4; //HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL
     // muFilters["hltMu8DiEle12CaloIdLTrackIdLMuonlegL3Filtered8"] = 5; //LT_Mu8_DiEle12_CaloIdL_TrackIdL_v3 muon
@@ -237,12 +237,13 @@ void ggNtuplizer::initTriggerFilters(const edm::Event &e) {
     // phoDoubleFilters["hltEG22Iso50T80LCaloId24b40eHE10R9Id65TrackIsoUnseededLastFilter"]                    = 24;
     // phoDoubleFilters["hltEG36R9Id85HE10R9Id65R9IdEta2LastFilter"]                                           = 25;
     // phoDoubleFilters["hltEG36Iso50T80LCaloId24b40eHE10R9Id65Eta2HcalIsoLastFilter"]                         = 26;
-    phoDoubleFilters["hltMu17Photon30IsoCaloIdPhotonlegTrackIsoFilter"]                                     = 27; //HLT_Mu17_Photon30_CaloIdL_L1ISO_v photon leg
+    phoDoubleFilters["hltMu17Photon30IsoCaloIdPhotonlegTrackIsoFilter"]                                     = 27; //HLT_Mu17_Photon30_IsoCaloId_v (??) photon leg
     phoDoubleFilters["hltMu17Photon30CaloIdLL1ISOHEFilter"]                                                 = 28;
     phoDoubleFilters["hltMu17Photon30CaloIdLL1ISOORHEFilter"]                                               = 29;
     // phoDoubleFilters["hltEG70HEFilter"]                                                                     = 30; //seeded leg of DoublePho70
     // phoDoubleFilters["hltDiEG70HEUnseededFilter"]                                                           = 31; //unseeded leg of DoublePho70
     // phoDoubleFilters["hltMu12DiEG20HEUnseededFilter"]                                                       = 32; //filter of Mu12_DiPho20
+    phoDoubleFilters["hltEG23HEFilter"]                                                       = 33; // HLT_DoubleMu20_7_Mass0to30_Photon23
 
     //triple photon filter                                                           
     // phoTripleFilters["hltEG20CaloIdLV2ClusterShapeL1TripleEGFilter"]         = 0;  //1st leg of TriplePho20_Calo

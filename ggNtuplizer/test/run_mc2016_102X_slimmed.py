@@ -13,12 +13,12 @@ from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '94X_mcRun2_asymptotic_v3')
 
 #process.Tracer = cms.Service("Tracer")
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
 process.MessageLogger.cerr.FwkReport.reportEvery = 1000
 
 process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring(
-        'file:/data4/cmkuo/testfiles/ggHZg_RunIISummer16MiniAODv3.root'
+        'file:MC_2016.root'
         ))
 
 #process.load("PhysicsTools.PatAlgos.patSequences_cff")
@@ -47,34 +47,34 @@ setupEgammaPostRecoSeq(process,
                                      'RecoEgamma.PhotonIdentification.Identification.cutBasedPhotonID_Fall17_94X_V2_cff']
                        )  
 
-process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_mc.root'))
+process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_mc_2016_slimmed.root'))
 
-### update JEC
-process.load("PhysicsTools.PatAlgos.producersLayer1.jetUpdater_cff")
-process.jetCorrFactors = process.updatedPatJetCorrFactors.clone(
-    src = cms.InputTag("slimmedJets"),
-    levels = ['L1FastJet', 'L2Relative', 'L3Absolute'],
-    payload = 'AK4PFchs') 
+# ### update JEC
+# process.load("PhysicsTools.PatAlgos.producersLayer1.jetUpdater_cff")
+# process.jetCorrFactors = process.updatedPatJetCorrFactors.clone(
+#     src = cms.InputTag("slimmedJets"),
+#     levels = ['L1FastJet', 'L2Relative', 'L3Absolute'],
+#     payload = 'AK4PFchs') 
 
-process.slimmedJetsJEC = process.updatedPatJets.clone(
-    jetSource = cms.InputTag("slimmedJets"),
-    jetCorrFactorsSource = cms.VInputTag(cms.InputTag("jetCorrFactors"))
-    )
+# process.slimmedJetsJEC = process.updatedPatJets.clone(
+#     jetSource = cms.InputTag("slimmedJets"),
+#     jetCorrFactorsSource = cms.VInputTag(cms.InputTag("jetCorrFactors"))
+#     )
 
-# MET correction and uncertainties
-from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
-runMetCorAndUncFromMiniAOD(process,
-                           isData=False,
-                           postfix = "ModifiedMET"
-                           )
+# # MET correction and uncertainties
+# from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
+# runMetCorAndUncFromMiniAOD(process,
+#                            isData=False,
+#                            postfix = "ModifiedMET"
+#                            )
 
-# random generator for jet smearing
-process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
-                                                   ggNtuplizer  = cms.PSet(
-        initialSeed = cms.untracked.uint32(201678),
-        engineName = cms.untracked.string('TRandom3')
-        )
-                                                   )
+# # random generator for jet smearing
+# process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
+#                                                    ggNtuplizer  = cms.PSet(
+#         initialSeed = cms.untracked.uint32(201678),
+#         engineName = cms.untracked.string('TRandom3')
+#         )
+#                                                    )
 
 process.load("ggAnalysis.ggNtuplizer.ggNtuplizer_miniAOD_cfi")
 process.ggNtuplizer.year=cms.int32(2016)
@@ -82,9 +82,9 @@ process.ggNtuplizer.doGenParticles=cms.bool(True)
 process.ggNtuplizer.runL1ECALPrefire=cms.bool(True)
 process.ggNtuplizer.dumpPFPhotons=cms.bool(True)
 process.ggNtuplizer.dumpHFElectrons=cms.bool(False)
-process.ggNtuplizer.dumpJets=cms.bool(True)
+process.ggNtuplizer.dumpJets=cms.bool(False)
 process.ggNtuplizer.dumpAK8Jets=cms.bool(False)
-process.ggNtuplizer.dumpSoftDrop= cms.bool(True)
+process.ggNtuplizer.dumpSoftDrop= cms.bool(False)
 process.ggNtuplizer.dumpTaus=cms.bool(False)
 process.ggNtuplizer.patTriggerResults=cms.InputTag("TriggerResults", "", "PAT")
 process.ggNtuplizer.triggerEvent=cms.InputTag("slimmedPatTrigger", "", "")
@@ -98,11 +98,11 @@ process.cleanedMu = cms.EDProducer("PATMuonCleanerBySegments",
                                    fractionOfSharedSegments = cms.double(0.499))
 
 process.p = cms.Path(
-    process.fullPatMetSequenceModifiedMET *
+    # process.fullPatMetSequenceModifiedMET *
     process.egammaPostRecoSeq *
     process.cleanedMu *
-    process.jetCorrFactors *
-    process.slimmedJetsJEC *
+    # process.jetCorrFactors *
+    # process.slimmedJetsJEC *
     process.prefiringweight *
     process.ggNtuplizer
     )

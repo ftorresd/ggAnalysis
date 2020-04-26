@@ -205,7 +205,9 @@ void ggNtuplizer::fillGlobalEvent(const edm::Event& e, const edm::EventSetup& es
       // else if (name.find("HLT_Ele12_CaloIdL_TrackIdL_IsoVL_PFJet30_v")          != string::npos) bitEleMuX = 48;
       // else if (name.find("HLT_Ele17_CaloIdL_TrackIdL_IsoVL_PFJet30_v")          != string::npos) bitEleMuX = 49;
       // else if (name.find("HLT_Ele23_CaloIdL_TrackIdL_IsoVL_PFJet30_v")          != string::npos) bitEleMuX = 50;
-      else if (name.find("HLT_IsoMu27_v")                                       != string::npos) bitEleMuX = 51;
+      else if (name.find("HLT_IsoMu27_v")                                          != string::npos) bitEleMuX = 51;
+      else if (name.find("HLT_IsoTkMu27_v")                                        != string::npos) bitEleMuX = 52;
+      else if (name.find("HLT_Dimuon13_Upsilon_v")                                 != string::npos) bitEleMuX = 53;
 
       // Photon triggers
       if      (name.find("HLT_Photon22_v")                    != string::npos) bitPho =  0; //bit0(lowest)
@@ -340,6 +342,9 @@ void ggNtuplizer::fillGlobalEvent(const edm::Event& e, const edm::EventSetup& es
       // else if (name.find("HLT_Ele32_WPTight_Gsf_L1DoubleEG_v")                   != string::npos) bitEleMuX = 54;
       // else if (name.find("HLT_Ele32_WPTight_Gsf_v")                              != string::npos) bitEleMuX = 55;
       else if (name.find("HLT_IsoMu24_v")                                           != string::npos) bitEleMuX = 56; // 2017
+      else if (name.find("HLT_IsoTkMu24_v")                                         != string::npos) bitEleMuX = 57; // 2017
+      else if (name.find("HLT_Dimuon24_Upsilon_noCorrL1_v")                         != string::npos) bitEleMuX = 58; // 2017
+      else if (name.find("HLT_Dimuon12_Upsilon_eta1p5_v")                         != string::npos) bitEleMuX = 59; // 2017
 
       // Photon triggers
       if      (name.find("HLT_Photon22_v")                    != string::npos) bitPho =  0; //bit0(lowest)
