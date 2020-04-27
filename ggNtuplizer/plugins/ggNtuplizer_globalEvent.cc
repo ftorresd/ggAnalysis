@@ -153,6 +153,17 @@ void ggNtuplizer::fillGlobalEvent(const edm::Event& e, const edm::EventSetup& es
     int bitPho    = -1;
     int bitJet    = -1;
 
+    // ///////////////////////
+    // // DEV
+    // // if (name.find("HLT_IsoMu27_v") != string::npos)  {
+    // //   std::cout << "Found Tag!!" << std::endl;
+    // // }
+    // if (name.find("HLT_Mu17_Photon30") != string::npos)  {
+    //   std::cout << "Found Probe!!" << std::endl;
+    // }
+    // // std::cout << name << std::endl;
+    // ///////////////////////
+
     if (year_ == 2016) {
       if      (name.find("HLT_Ele25_eta2p1_WPTight_Gsf_v")                      != string::npos) bitEleMuX =  0;
       // else if (name.find("HLT_Ele27_eta2p1_WPTight_Gsf_v")                      != string::npos) bitEleMuX =  1; 
@@ -210,7 +221,7 @@ void ggNtuplizer::fillGlobalEvent(const edm::Event& e, const edm::EventSetup& es
       else if (name.find("HLT_Dimuon13_Upsilon_v")                                 != string::npos) bitEleMuX = 53;
 
       // Photon triggers
-      if      (name.find("HLT_Photon22_v")                    != string::npos) bitPho =  0; //bit0(lowest)
+      // if      (name.find("HLT_Photon22_v")                    != string::npos) bitPho =  0; //bit0(lowest)
       // else if (name.find("HLT_Photon30_v")                    != string::npos) bitPho =  1; 
       // else if (name.find("HLT_Photon36_v")                    != string::npos) bitPho =  2; 
       // else if (name.find("HLT_Photon50_v")                    != string::npos) bitPho =  3; 
@@ -244,7 +255,7 @@ void ggNtuplizer::fillGlobalEvent(const edm::Event& e, const edm::EventSetup& es
       // else if (name.find("HLT_Photon120_R9Id90_HE10_Iso40_EBOnly_VBF_v")             != string::npos) bitPho = 31;
 
       // Jet triggers
-      if      (name.find("HLT_QuadPFJet_BTagCSV_p016_VBF_Mqq460_v")                    != string::npos) bitJet =  0;
+      // if      (name.find("HLT_QuadPFJet_BTagCSV_p016_VBF_Mqq460_v")                    != string::npos) bitJet =  0;
       // else if (name.find("HLT_QuadPFJet_BTagCSV_p016_VBF_Mqq500_v")                    != string::npos) bitJet =  1; 
       // else if (name.find("HLT_QuadPFJet_BTagCSV_p016_p11_VBF_Mqq200_v")                != string::npos) bitJet =  2; 
       // else if (name.find("HLT_QuadPFJet_BTagCSV_p016_p11_VBF_Mqq240_v")                != string::npos) bitJet =  3; 
@@ -347,7 +358,7 @@ void ggNtuplizer::fillGlobalEvent(const edm::Event& e, const edm::EventSetup& es
       else if (name.find("HLT_Dimuon12_Upsilon_eta1p5_v")                         != string::npos) bitEleMuX = 59; // 2017
 
       // Photon triggers
-      if      (name.find("HLT_Photon22_v")                    != string::npos) bitPho =  0; //bit0(lowest)
+      // if      (name.find("HLT_Photon22_v")                    != string::npos) bitPho =  0; //bit0(lowest)
       // else if (name.find("HLT_Photon30_v")                    != string::npos) bitPho =  1; 
       // else if (name.find("HLT_Photon33_v")                    != string::npos) bitPho =  2; // 2017
       // else if (name.find("HLT_Photon50_v")                    != string::npos) bitPho =  3; // 2017
@@ -387,7 +398,7 @@ void ggNtuplizer::fillGlobalEvent(const edm::Event& e, const edm::EventSetup& es
       // else if (name.find("HLT_Photon75_R9Id90_HE10_IsoM_EBOnly_PFJetsMJJ600DEta3_v") != string::npos) bitPho = 37;      
 
       // Jet triggers
-      if      (name.find("HLT_QuadPFJet_BTagCSV_p016_VBF_Mqq460_v")                    != string::npos) bitJet =  0;
+      // if      (name.find("HLT_QuadPFJet_BTagCSV_p016_VBF_Mqq460_v")                    != string::npos) bitJet =  0;
       // else if (name.find("HLT_QuadPFJet_BTagCSV_p016_VBF_Mqq500_v")                    != string::npos) bitJet =  1; 
       // else if (name.find("HLT_QuadPFJet_BTagCSV_p016_p11_VBF_Mqq200_v")                != string::npos) bitJet =  2; 
       // else if (name.find("HLT_QuadPFJet_BTagCSV_p016_p11_VBF_Mqq240_v")                != string::npos) bitJet =  3; 
@@ -429,6 +440,20 @@ void ggNtuplizer::fillGlobalEvent(const edm::Event& e, const edm::EventSetup& es
     // indicates prescaling and whether trigger was fired or not
     ULong64_t isPrescaled = (hltCfg.prescaleValue(prescaleSet, name)!=1) ? 1 : 0;
     ULong64_t isFired     = (trgResultsHandle->accept(i)) ? 1 : 0;
+    // if (isFired == 1) {
+    //   ///////////////////////
+    //   // DEV
+    //   // if (name.find("HLT_IsoMu27_v") != string::npos)  {
+    //   //   std::cout << "Found Tag!!" << std::endl;
+    //   // }
+    //   // if (name.find("HLT_Mu17_Photon30") != string::npos)  {
+    //   //   std::cout << "Found Probe!!" << std::endl;
+    //   //   std::cout << e.id().event() << std::endl;
+    //   //   std::cout << "#######################################################" << std::endl;
+    //   // }
+    //   // std::cout << name << std::endl;
+    //   ///////////////////////
+    // }
     ULong64_t isrejectedByHLTPS = (hltCfg.moduleType(hltCfg.moduleLabel(i,trgResultsHandle->index(i)))=="HLTPrescaler") ? 1: 0;
 
     if (bitEleMuX >= 0) {

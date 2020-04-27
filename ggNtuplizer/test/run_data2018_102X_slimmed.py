@@ -10,18 +10,18 @@ process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff" )
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
-# process.GlobalTag = GlobalTag(process.GlobalTag, '102X_dataRun2_v11', '') #2018ABC
-process.GlobalTag = GlobalTag(process.GlobalTag, '102X_dataRun2_Prompt_v14', '') #2018D
+process.GlobalTag = GlobalTag(process.GlobalTag, '102X_dataRun2_v11', '') #2018ABC
+# process.GlobalTag = GlobalTag(process.GlobalTag, '102X_dataRun2_Prompt_v14', '') #2018D
 
 #process.Tracer = cms.Service("Tracer")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 process.MessageLogger.cerr.FwkReport.reportEvery = 1000
 
 process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring(
-        # 'file:Data_2018C.root'
-        'file:Data_2018D.root'
+        'file:Data_2018C.root'
+        # 'file:Data_2018D.root'
             #'file:/data4/cmkuo/testfiles/DoubleMuon_Run2018D_PR.root'
         )
                             )
@@ -51,8 +51,8 @@ runOnData( process,  names=['Photons', 'Electrons','Muons','Taus','Jets'], outpu
 #runOnData( process, outputModules = [] )
 #removeMCMatching(process, names=['All'], outputModules=[])
 
-# process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018C_slimmed.root'))
-process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018D_slimmed.root'))
+process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018C_slimmed.root'))
+# process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018D_slimmed.root'))
 # process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018_slimmed.root'))
 
 ### update JEC

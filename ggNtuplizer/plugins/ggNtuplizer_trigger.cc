@@ -151,9 +151,12 @@ void ggNtuplizer::initTriggerFilters(const edm::Event &e) {
     // eleDoubleFilters["hltEle16Ele12Ele8CaloIdLTrackIdLDphiLeg2Filter"]                    = 10;
     // eleDoubleFilters["hltEle16Ele12Ele8CaloIdLTrackIdLDphiLeg3Filter"]                    = 11;
 
+
     muFilters["hltMu17Photon30IsoCaloIdMuonlegL3Filtered17Q"] = 0; //HLT_Mu17_Photon30_IsoCaloId_v* muon
     muFilters["hltL3crIsoL1sMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p09"] = 1; //HLT_IsoMu24_v1
     muFilters["hltL3fL1sL1Mu5IsoEG18L1f5L2f7L3Filtered17"] = 2; //HLT_Mu17_Photon*  muon
+
+
     // muFilters["hltDiMu9Ele9CaloIdLTrackIdLMuonlegL3Filtered9"] = 3; //HLT_DiMu9_Ele9_CaloIdL_TrackIdL_v3 muon
     // muFilters["hltMu23TrkIsoVVLEle12CaloIdLTrackIdLIsoVLMuonlegL3IsoFiltered23"] = 4; //HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL
     // muFilters["hltMu8DiEle12CaloIdLTrackIdLMuonlegL3Filtered8"] = 5; //LT_Mu8_DiEle12_CaloIdL_TrackIdL_v3 muon
@@ -168,20 +171,28 @@ void ggNtuplizer::initTriggerFilters(const edm::Event &e) {
     // muFilters["hltDiMuonGlb27Trk8DzFiltered0p2"] = 14; //HLT_Mu27_TkMu8
     // muFilters["hltDiMuonGlb30Trk11DzFiltered0p2"] = 15; //HLT_Mu30_TkMu11
     // muFilters["hltL3crIsoL1sDoubleMu125L1f16erL2f10QL3f17QL3Dz0p2L3crIsoRhoFiltered0p15IterTrk02"] = 16; //HLT_DoubleIsoMu17_eta2p1
+
+
     muFilters["hltL3crIsoL1sMu22Or25L1f0L2f10QL3f27QL3trkIsoFiltered0p09"] = 17; //HLT_IsoMu27
     muFilters["hltL3fL1sMu20L1f0Tkf22QL3trkIsoFiltered0p09"] = 18; //HLT_IsoTkMu22
     muFilters["hltL3fL1sMu22L1f0Tkf24QL3trkIsoFiltered0p09"] = 19; //HLT_IsoTkMu24
     muFilters["hltL3fL1sMu22Or25L1f0Tkf27QL3trkIsoFiltered0p09"] = 20; //HLT_IsoTkMu27
     muFilters["hltL3fL1sL1Mu5IsoEG18ORL1Mu5IsoEG20L1f5L2f7L3Filtered17"] = 21; //HLT_Mu17_Photon*  muon
+
+
     // muFilters["hltMu23TrkIsoVVLEle12CaloIdLTrackIdLIsoVLDZFilter"] = 23; //HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v
     // muFilters["hltMu23TrkIsoVVLEle12CaloIdLTrackIdLIsoVLElectronlegTrackIsoFilter"] = 24; //HLT_Mu23_TrkIsoVVL_Ele12*
     // muFilters["hltMu12TrkIsoVVLEle23CaloIdLTrackIdLIsoVLDZFilter"] = 25; //DZ of HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ
     // muFilters["hltL3fL1DoubleMu7EG7f0Filtered9"] = 26;   // HLT_DiMu9_Ele9_CaloIdL_TrackIdL_DZ_v
     // muFilters["hltDoubleMu9DZFilter"] = 27;
     // muFilters["hltL3fL1Mu6DoubleEG10f0Filtered8"] = 28; // HLT_Mu8_DiEle12_CaloIdL_TrackIdL_DZ_
+
+
     muFilters["hltDoubleMu207Mass0to30Photon23L3Filtered"] = 29;  //filter of DoubleMu20_Pho23 (2017)
     muFilters["hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p07"] = 30; //HLT_IsoMu24 (2017)
     muFilters["hltL3crIsoL1sMu22Or25L1f0L2f10QL3f27QL3trkIsoFiltered0p07"] = 31; //HLT_IsoMu27 (2017)
+
+
     // muFilters["hltL3fL1sMu12Diphoton20L1f0L2f8QL3Filtered12"] = 32; //HLTMu12_DIPho20 (2017)
 
     // phoSingleFilters["hltEG33L1EG26HEFilter"]                = 0;
@@ -333,7 +344,7 @@ void ggNtuplizer::initTriggerFilters(const edm::Event &e) {
     for (size_t iF = 0; iF < obj.filterLabels().size(); ++iF) {
       string label = obj.filterLabels()[iF];
 
-      //cout<<"label : "<<iF<<" "<<label<<endl;
+      // cout<<"-----------> (all) labels  : "<<iF<<" "<<label<<endl;
 
       std::map<string,size_t>::iterator idxEleSingle = eleSingleFilters.find(label);
       std::map<string,size_t>::iterator idxEleDouble = eleDoubleFilters.find(label);
@@ -371,6 +382,7 @@ void ggNtuplizer::initTriggerFilters(const edm::Event &e) {
 
       // double photon filters
       if (idxPhoDouble != phoDoubleFilters.end()) {
+        // cout << "-----------> label : " << " " << label << endl;
         size_t idx = idxPhoDouble->second;
         trgDoublePhoPt [idx].push_back(obj.pt());
         trgDoublePhoEta[idx].push_back(obj.eta());
@@ -387,6 +399,7 @@ void ggNtuplizer::initTriggerFilters(const edm::Event &e) {
 
       // muon filters
       if (idxMu != muFilters.end()) {
+        // cout << "-----------> label : " << " " << label << endl;
         size_t idx = idxMu->second;
         trgMuPt [idx].push_back(obj.pt());
         trgMuEta[idx].push_back(obj.eta());
@@ -470,6 +483,7 @@ ULong64_t ggNtuplizer::matchDoublePhotonTriggerFilters(double pt, double eta, do
       if (fabs(pt - trgDoublePhoPt[f][v])/trgDoublePhoPt[f][v] < trgFilterDeltaPtCut_ &&
           deltaR(eta, phi, trgDoublePhoEta[f][v], trgDoublePhoPhi[f][v]) < trgFilterDeltaRCut_) {
         result |= (1<<f);
+        // cout << "Match - Photon!" << endl;
         break;
       }
 
@@ -504,6 +518,7 @@ ULong64_t ggNtuplizer::matchMuonTriggerFilters(double pt, double eta, double phi
       if (fabs(pt - trgMuPt[f][v])/trgMuPt[f][v] < trgFilterDeltaPtCut_ &&
           deltaR(eta, phi, trgMuEta[f][v], trgMuPhi[f][v]) < trgFilterDeltaRCut_) {
         result |= (1<<f);
+        // cout << "Match - Muon!" << endl;
         break;
       }
 

@@ -4,3 +4,4 @@ ggNtuplizer/python/__init__.py
 *.root
 *.log
 *.tmp
+ggNtuplizer/test/run_data2016H_102X_slimmed.py

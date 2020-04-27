@@ -14,13 +14,13 @@ process.GlobalTag = GlobalTag(process.GlobalTag, '94X_dataRun2_v10')
 
 #process.Tracer = cms.Service("Tracer")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 process.MessageLogger.cerr.FwkReport.reportEvery = 1000
 
 process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring(
-        # 'file:Data_2016B-ver1.root'
-        'file:Data_2016B-ver2.root'
+        'file:Data_2016B-ver1.root'
+        # 'file:Data_2016B-ver2.root'
         # 'file:Data_2016H.root'
         )
                             )
@@ -50,8 +50,8 @@ runOnData( process,  names=['Photons', 'Electrons','Muons','Taus','Jets'], outpu
 #runOnData( process, outputModules = [] )
 #removeMCMatching(process, names=['All'], outputModules=[])
 
-# process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2016B-ver1_slimmed.root'))
-process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2016B-ver2_slimmed.root'))
+process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2016B-ver1_slimmed.root'))
+# process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2016B-ver2_slimmed.root'))
 # process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2016_slimmed.root'))
 # process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2016H_slimmed.root'))
 

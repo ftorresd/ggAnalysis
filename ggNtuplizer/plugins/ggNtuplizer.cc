@@ -91,14 +91,15 @@ ggNtuplizer::ggNtuplizer(const edm::ParameterSet& ps) :
   }
   
   // branchesMET(tree_);
-  // branchesPhotons(tree_);
-  branchesElectrons(tree_);
+  // branchesElectrons(tree_);
+  branchesPhotons(tree_);
   branchesMuons(tree_);
-  if (dumpPFPhotons_)   branchesPFPhotons(tree_);
-  if (dumpHFElectrons_) branchesHFElectrons(tree_);
-  if (dumpTaus_)        branchesTaus(tree_);
-  if (dumpJets_)        branchesJets(tree_);
-  if (dumpAK8Jets_)     branchesAK8Jets(tree_);
+  // if (dumpPFPhotons_)   branchesPFPhotons(tree_);
+  branchesPFPhotons(tree_);
+  // if (dumpHFElectrons_) branchesHFElectrons(tree_);
+  // if (dumpTaus_)        branchesTaus(tree_);
+  // if (dumpJets_)        branchesJets(tree_);
+  // if (dumpAK8Jets_)     branchesAK8Jets(tree_);
 
 }
 
@@ -150,11 +151,12 @@ void ggNtuplizer::analyze(const edm::Event& e, const edm::EventSetup& es) {
   // fillElectrons(e, es, pv);
   fillMuons(e, pv, vtx);
   fillPhotons(e, es); 
-  if (dumpPFPhotons_)    fillPFPhotons(e, es);
-  if (dumpHFElectrons_ ) fillHFElectrons(e);
-  if (dumpTaus_)         fillTaus(e);
-  if (dumpJets_)         fillJets(e,es);
-  if (dumpAK8Jets_)      fillAK8Jets(e,es);
+  // if (dumpPFPhotons_)    fillPFPhotons(e, es);
+  fillPFPhotons(e, es);
+  // if (dumpHFElectrons_ ) fillHFElectrons(e);
+  // if (dumpTaus_)         fillTaus(e);
+  // if (dumpJets_)         fillJets(e,es);
+  // if (dumpAK8Jets_)      fillAK8Jets(e,es);
 
   hEvents_->Fill(1.5);
   tree_->Fill();
