@@ -47,7 +47,7 @@ setupEgammaPostRecoSeq(process,
                                      'RecoEgamma.PhotonIdentification.Identification.cutBasedPhotonID_Fall17_94X_V2_cff']
                        )  
 
-process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_mc_2016_slimmed.root'))
+process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_mc.root'))
 
 # ### update JEC
 # process.load("PhysicsTools.PatAlgos.producersLayer1.jetUpdater_cff")
