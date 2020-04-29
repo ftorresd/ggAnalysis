@@ -62,7 +62,7 @@ def doSubmit(listOfSamples):
     submit(config)
 
 
-config.JobType.psetName = '../run_data2018_102X_slimmed.py'
+config.JobType.psetName = '../run_mc2018_102X_slimmed.py'
 
 config.JobType.outputFiles = ['ggtree_mc.root'] 
 
