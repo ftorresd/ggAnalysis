@@ -49,7 +49,7 @@ runOnData( process,  names=['Photons', 'Electrons','Muons','Taus','Jets'], outpu
 #runOnData( process, outputModules = [] )
 #removeMCMatching(process, names=['All'], outputModules=[])
 
-process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2017_slimmed.root'))
+process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data.root'))
 
 # ### update JEC
 # process.load("PhysicsTools.PatAlgos.producersLayer1.jetUpdater_cff")

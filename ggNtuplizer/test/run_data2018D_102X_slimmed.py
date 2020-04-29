@@ -52,7 +52,7 @@ runOnData( process,  names=['Photons', 'Electrons','Muons','Taus','Jets'], outpu
 #removeMCMatching(process, names=['All'], outputModules=[])
 
 # process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018C_slimmed.root'))
-process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018D_slimmed.root'))
+process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data.root'))
 # process.TFileService = cms.Service("TFileService", fileName = cms.string('ggtree_data_2018_slimmed.root'))
 
 ### update JEC
