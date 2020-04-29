@@ -31,19 +31,17 @@ mask = 'https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/Co
 #name = 'HLTPhysics_ntuples_L1_V9_v02_UERJ_goodsrunBPH_RUN_ALL_UERJHLT_v24_V01'
 #config.General.workArea = 'crab_'+name
 config.General.transferLogs = True
+config.JobType.allowUndistributedCMSSW = True
 config.General.transferOutputs = True
 config.JobType.pluginName = 'Analysis'
 #config.JobType.psetName = 'hlt_L1_V9_GRun_Data_v02_UERJ_v18.py'
 # config.JobType.numCores = 4
-config.JobType.maxMemoryMB = 5000
+#config.JobType.maxMemoryMB = 5000
 config.Data.inputDBS = 'global'
 config.Data.splitting = 'Automatic'
 # config.Data.splitting = 'FileBased'
 config.Data.publication = False
 config.Site.storageSite = 'T2_BR_UERJ'
-# config.Site.storageSite = 'T2_CH_CERN'
-# config.Site.storageSite = 'T3_US_FNALLPC'
-
 # config.Data.ignoreLocality = False
 
 
@@ -72,32 +70,18 @@ def doSubmit(listOfSamples):
 
 
 config.JobType.psetName = '../run_data2018_102X_slimmed.py'
-# config.JobType.inputFiles   = ['Summer16_23Sep2016V4_MC_L2Relative_AK8PFchs.txt', 'Summer16_23Sep2016V4_MC_L3Absolute_AK8PFchs.txt', 'Summer16_23Sep2016V4_MC.db']
-
-# config.JobType.inputFiles   = [
-#       'Summer16_23Sep2016AllV4_DATA.db',
-#       'Summer16_23Sep2016EFV4_DATA_L2Relative_AK8PFchs.txt',
-#       'Summer16_23Sep2016HV4_DATA_L2L3Residual_AK8PFchs.txt',
-#       'Summer16_23Sep2016BCDV4_DATA_L2L3Residual_AK8PFchs.txt',
-#       'Summer16_23Sep2016EFV4_DATA_L3Absolute_AK8PFchs.txt',
-#       'Summer16_23Sep2016HV4_DATA_L2Relative_AK8PFchs.txt',
-#       'Summer16_23Sep2016BCDV4_DATA_L2Relative_AK8PFchs.txt',
-#       'Summer16_23Sep2016GV4_DATA_L2L3Residual_AK8PFchs.txt',
-#       'Summer16_23Sep2016HV4_DATA_L3Absolute_AK8PFchs.txt', 
-#       'Summer16_23Sep2016BCDV4_DATA_L3Absolute_AK8PFchs.txt',
-#       'Summer16_23Sep2016GV4_DATA_L2Relative_AK8PFchs.txt', 
-#       'Summer16_23Sep2016EFV4_DATA_L2L3Residual_AK8PFchs.txt',
-#       'Summer16_23Sep2016GV4_DATA_L3Absolute_AK8PFchs.txt',
-#       ]
 
 config.JobType.outputFiles = ['ggtree_data.root'] 
 
+
+################################################################################################
+# Submit CRAB jobs
+################################################################################################
 
 
 # SingleMuon_Run2018A-17Sep2018-v2_MINIAOD
 nfiles = -1
 unitsPerJob = 180
-name = '_ggNtuples_10x2X_slimmed'
+name = '_ggNtuples_10x2X_slimmed_v01'
 listOfSamples = ['SingleMuon_Run2018A-17Sep2018-v2_MINIAOD']
 doSubmit(listOfSamples)
-
