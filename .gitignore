@@ -6,3 +6,4 @@ ggNtuplizer/python/__init__.py
 *.tmp
 ggNtuplizer/test/run_data2016H_102X_slimmed.py
 crab_*
+ggNtuplizer/test/crab/fast_copy/crab_*
