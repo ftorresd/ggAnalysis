@@ -88,9 +88,9 @@ __EXIT_MESSAGE__
 EOF
 fi
   """
-  FrameworkJobReport_editor.replace("__EXIT_CODE__", str(exitCode))
-  FrameworkJobReport_editor.replace("__ERROR_TYPE__", errorType)
-  FrameworkJobReport_editor.replace("__EXIT_MESSAGE__", exitMessage)
+  FrameworkJobReport_editor = FrameworkJobReport_editor.replace("__EXIT_CODE__", str(exitCode))
+  FrameworkJobReport_editor = FrameworkJobReport_editor.replace("__ERROR_TYPE__", errorType)
+  FrameworkJobReport_editor = FrameworkJobReport_editor.replace("__EXIT_MESSAGE__", exitMessage)
   with open('FrameworkJobReport_editor.sh', 'w') as f:
     print(f.write(FrameworkJobReport_editor))
   os.system("chmod +x FrameworkJobReport_editor.sh")
